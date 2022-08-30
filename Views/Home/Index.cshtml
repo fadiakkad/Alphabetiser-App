@@ -1,0 +1,95 @@
+﻿@model ItemViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<br>
+<div>
+    <h4>
+    Enter below the text that you want to sort:
+    </h4> 
+  
+</div>
+
+<hr>
+<br>
+<div class="form-group row">
+<div class="col-1">
+    <label> item 1 </label>
+</div>
+<div class="col-1">
+    <input type="text" id="item_1" /> 
+</div>
+
+<div class="offset-4">
+    <button class="btn btn-primary " id="order" onclick="Order()">Sort Items</button>
+</div>
+
+
+<div class="offset-1">
+<button class="btn btn-primary " value="New Input" onclick="NewInput()" id="clickme">New Input</button>
+</div>
+
+
+</div>
+<div class="form-group row">
+<div class="col-1">
+    <label> item 2 </label>
+</div>
+<div class="col-1">
+    <input type="text" id="item_2" /> 
+</div>
+</div>
+
+
+  
+
+
+<br>
+
+
+<script>
+  let i = 2;
+function NewInput(){   
+  
+        i = i + 1
+        br = document.createElement("span");
+        br.innerHTML = "<br/>";
+       
+        var inputTag = document.createElement("div");
+        var inputTag_ = document.createElement("input");
+        inputTag_.setAttribute("type", "text");
+        inputTag_.setAttribute("id", "item_"+i);
+        @* inputTag_.setAttribute("class", "offset-sm-1"); *@
+        const newLabel = document.createElement("label");
+        newLabel.style.marginLeft = "85px";
+        inputTag_.style.marginLeft = "50px";
+        newLabel.innerHTML = " Item " + i + " ";
+        inputTag.innerHTML = "type = 'text' id='item_"+i+"' ";
+        document.body.appendChild(newLabel);
+        document.body.appendChild(inputTag_);
+         document.body.appendChild(br);
+} 
+    function Order() {
+        const item_arr = [];
+        var fields_count = document.getElementsByTagName('input').length;
+        console.log(fields_count);
+
+        for(let i = 0; i<= fields_count; i++)
+        {
+        var item = "item_" + i ;
+        console.log(item);
+        var itemInput = document.getElementById(item);
+            if(itemInput&&itemInput.value)
+            {
+                item_arr.push(itemInput.value);
+            } 
+        }
+        item_arr.sort();
+        console.log('The alphabetical order of the text you entered is: ' + item_arr);
+        window.alert('The alphabetical order of the text you entered is: ' +item_arr);
+    }
+
+</script>
+
